@@ -133,4 +133,65 @@ The project currently has:
 4. **Create pull request** to main branch
 5. **Merge only after** all CI checks pass
 
+## Key Learnings from Modern Python Development Setup
+
+### Tool Selection and Configuration
+- **Ruff over traditional linters**: Chose Ruff over flake8/black/isort combination for 10-100x performance improvement
+- **Strict MyPy configuration**: Enabled strict mode for maximum type safety, crucial for large-scale search systems
+- **Python 3.13+ features**: Used modern type annotations (`dict[str, Any]` vs `typing.Dict`) for cleaner code
+- **uv for dependency management**: Fast, reliable alternative to pip/poetry with excellent lock file support
+
+### CI/CD Best Practices
+- **Parallel job execution**: Separated linting and testing into parallel jobs for faster feedback
+- **Dependency caching**: Used `astral-sh/setup-uv@v4` with caching for 2-3x faster CI runs
+- **Feature branch workflows**: Configured CI to run on both feature branches and PRs for early feedback
+- **Comprehensive testing**: Added both CLI and FastAPI server startup tests to catch integration issues
+
+### Code Quality Standards
+- **Type annotations everywhere**: All functions have proper return type annotations for better IDE support
+- **Modern Python syntax**: Leveraged Python 3.13+ features like improved type hints
+- **Comprehensive linting rules**: Enabled 10+ rule categories covering bugs, style, complexity, and upgrades
+- **Per-file ignore patterns**: Strategic ignoring of rules where appropriate (e.g., no type annotations in tests)
+
+### Development Workflow Improvements
+- **Local-first development**: Developers can run same checks locally before pushing
+- **Automated formatting**: Ruff auto-fixes many issues, reducing manual work
+- **Fast feedback loops**: Ruff checks complete in seconds vs minutes with traditional tools
+- **Documentation integration**: All commands documented in CLAUDE.md for easy reference
+
+### FastAPI-Specific Optimizations
+- **Import ordering**: Configured isort to understand FastAPI project structure
+- **Type safety with Pydantic**: MyPy configuration ready for Pydantic model validation
+- **Async function support**: Proper type annotations for async FastAPI endpoints
+- **Development server testing**: CI validates both production and development server startup
+
+### Project Architecture Benefits
+- **Scalability preparation**: Strict typing and linting prepare codebase for complex search algorithms
+- **Team collaboration**: Consistent code style and quality checks enable multiple contributors
+- **Interview readiness**: Professional tooling demonstrates software engineering best practices
+- **Maintenance efficiency**: Automated quality checks reduce technical debt accumulation
+
+### GitHub Integration Best Practices
+- **Pull Request Automation**: Successfully used `gh pr create` with comprehensive description templates
+- **Repository Protection Rules**: Learned about branch protection requiring PRs for all changes
+- **CI Integration**: GitHub Actions automatically runs on PR creation, preventing bad merges
+- **Merge Strategies**: Repository configured for squash merges to maintain clean history
+
+## GitHub Integration
+
+### Pull Request Management
+```bash
+# Create PR using GitHub CLI
+gh pr create --title "Title" --body "Description"
+
+# View PR status
+gh pr status
+
+# Merge PR after CI passes (if you have permissions)
+gh pr merge --squash
+
+# View PR details
+gh pr view <number>
+```
+
 **Next Steps**: Implement inverted index construction from Wikipedia dataset to enable actual search functionality.
