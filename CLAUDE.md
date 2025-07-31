@@ -55,6 +55,35 @@ uv export --format requirements-txt > requirements.txt
 
 This project uses modern Python tooling for code quality and consistency:
 
+#### Testing with pytest
+
+**Test Structure:**
+- `tests/test_main.py` - Tests for CLI entry point functionality
+- `tests/test_app.py` - Tests for FastAPI endpoints and application logic
+- Tests include both synchronous and asynchronous client testing
+- Comprehensive coverage of endpoints, error cases, and edge cases
+
+**Running Tests:**
+```bash
+# Run all tests
+uv run pytest
+
+# Run tests with verbose output
+uv run pytest -v
+
+# Run tests with short traceback format
+uv run pytest --tb=short
+
+# Run specific test file
+uv run pytest tests/test_app.py
+
+# Run specific test function
+uv run pytest tests/test_app.py::test_root_endpoint
+
+# Run tests with coverage (when coverage is added)
+uv run pytest --cov=app --cov=main
+```
+
 #### Ruff - Ultra-fast Python Linter & Formatter
 ```bash
 # Run linting checks
@@ -86,11 +115,27 @@ The project includes a GitHub Actions workflow (`.github/workflows/ci.yml`) that
 - Runs on pull requests to main
 - Sets up Python 3.13 environment
 - Installs dependencies with uv
-- Runs Ruff linting and formatting checks
-- Runs MyPy type checking
-- Tests application startup (both CLI and FastAPI server)
+- **Lint and Type Check Job:**
+  - Runs Ruff linting and formatting checks
+  - Runs MyPy type checking
+- **Test Job:**
+  - Installs dev dependencies
+  - Runs comprehensive test suite with pytest
 
 The CI pipeline uses parallel jobs for efficiency and caches dependencies for faster builds.
+
+#### Local Development Workflow
+Before pushing changes, run the same checks locally:
+```bash
+# Run all quality checks
+uv run ruff check --fix .
+uv run ruff format .
+uv run mypy .
+uv run pytest
+
+# Or run them in sequence
+uv run ruff check --fix . && uv run ruff format . && uv run mypy . && uv run pytest
+```
 
 ## Development Roadmap
 
