@@ -63,16 +63,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        uv sync
+        uv sync --dev
 
-    - name: Test application startup
+    - name: Run tests
       run: |
-        # Test CLI version
-        uv run python main.py
-        
-        # Test FastAPI server can start (background test)
-        uv run uvicorn app.main:app --host 0.0.0.0 --port 8000 &
-        sleep 5
-        curl -f http://localhost:8000/ || exit 1
-        curl -f "http://localhost:8000/search?q=test" || exit 1
-        pkill -f uvicorn
+        uv run pytest -v --tb=short
