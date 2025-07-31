@@ -38,12 +38,59 @@ python main.py
 # Install dependencies
 uv sync
 
+# Install with development dependencies
+uv sync --dev
+
 # Add new dependency
 uv add <package-name>
+
+# Add development dependency
+uv add --dev <package-name>
 
 # Export requirements
 uv export --format requirements-txt > requirements.txt
 ```
+
+### Code Quality Tools
+
+This project uses modern Python tooling for code quality and consistency:
+
+#### Ruff - Ultra-fast Python Linter & Formatter
+```bash
+# Run linting checks
+uv run ruff check .
+
+# Auto-fix issues where possible
+uv run ruff check --fix .
+
+# Format code
+uv run ruff format .
+
+# Check formatting without changes
+uv run ruff format --check .
+```
+
+#### MyPy - Static Type Checker
+```bash
+# Run type checking
+uv run mypy .
+
+# Type check specific file
+uv run mypy app/main.py
+```
+
+### CI/CD Pipeline
+
+The project includes a GitHub Actions workflow (`.github/workflows/ci.yml`) that automatically:
+- Runs on push to main and feature branches
+- Runs on pull requests to main
+- Sets up Python 3.13 environment
+- Installs dependencies with uv
+- Runs Ruff linting and formatting checks
+- Runs MyPy type checking
+- Tests application startup (both CLI and FastAPI server)
+
+The CI pipeline uses parallel jobs for efficiency and caches dependencies for faster builds.
 
 ## Development Roadmap
 
@@ -66,5 +113,24 @@ The project currently has:
 - Root endpoint returning API info
 - Search endpoint `/search?q=<query>` that accepts query parameter but returns empty results
 - Dependencies: FastAPI, uvicorn, python-multipart
+- **Modern Development Setup**:
+  - Python 3.13 with strict type checking
+  - Ruff for ultra-fast linting and formatting
+  - MyPy for static type analysis
+  - Comprehensive .gitignore for Python/FastAPI projects
+  - GitHub Actions CI/CD pipeline with automated quality checks
+
+## Development Workflow
+
+1. **Make changes** to code in feature branch
+2. **Run quality checks locally**:
+   ```bash
+   uv run ruff check --fix .
+   uv run ruff format .
+   uv run mypy .
+   ```
+3. **Commit and push** - CI will automatically run the same checks
+4. **Create pull request** to main branch
+5. **Merge only after** all CI checks pass
 
 **Next Steps**: Implement inverted index construction from Wikipedia dataset to enable actual search functionality.
