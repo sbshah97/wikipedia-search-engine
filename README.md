@@ -2,7 +2,7 @@
 
 A comprehensive search engine built from scratch to demonstrate deep understanding of information retrieval systems, machine learning, and distributed computing. This project serves as a learning platform for mastering the technical skills required for senior search engineering roles at companies like Perplexity, Google, and other search-focused organizations.
 
-## <� Learning Objectives
+## Learning Objectives
 
 This project is designed to build expertise in:
 
@@ -12,13 +12,13 @@ This project is designed to build expertise in:
 - **RAG Pipelines**: Integration with large language models for contextual answer generation
 - **Performance Engineering**: Latency optimization, caching strategies, system profiling
 
-## <� Architecture Roadmap
+## Architecture Roadmap     y
 
 ### Phase 1: Core Search Engine (Current)
--  Basic FastAPI structure
-- = Inverted index implementation
-- = TF-IDF and BM25 ranking
-- = Query processing pipeline
+- Basic FastAPI structure
+- Inverted index implementation
+- TF-IDF and BM25 ranking
+- Query processing pipeline
 
 ### Phase 2: Neural Retrieval
 - Dense vector search with BERT/Sentence-BERT
@@ -35,7 +35,7 @@ This project is designed to build expertise in:
 - Context-aware response synthesis
 - Answer quality evaluation metrics
 
-## =� Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.10+
@@ -58,7 +58,7 @@ uvicorn app.main:app --reload
 - `GET /` - API information
 - `GET /search?q=<query>` - Search Wikipedia articles (currently returns empty results)
 
-## =� Dataset
+## Dataset
 
 This project uses Wikipedia articles as the primary dataset for indexing and search. The choice of Wikipedia provides:
 - Large-scale, real-world text data
@@ -66,7 +66,7 @@ This project uses Wikipedia articles as the primary dataset for indexing and sea
 - Multilingual capabilities for future expansion
 - Well-understood domain for evaluation
 
-## =� Technology Stack
+## Technology Stack
 
 - **Backend**: FastAPI (Python) - rapid prototyping and ML integration
 - **Performance-Critical Components**: Planned migration to Rust/C++ for indexing and retrieval
@@ -74,14 +74,14 @@ This project uses Wikipedia articles as the primary dataset for indexing and sea
 - **Infrastructure**: Docker, Kubernetes for scalable deployment
 - **Monitoring**: Comprehensive logging and performance metrics
 
-## =� Success Metrics
+## Success Metrics
 
 - **Relevance**: NDCG@10, MAP, MRR on standard IR benchmarks
 - **Performance**: Query latency < 100ms, index build time optimization
 - **Scalability**: Handle 10M+ documents with sub-second response times
 - **Learning**: Document architecture decisions and trade-offs for interview discussions
 
-## <� Educational Value
+## Educational Value
 
 This project demonstrates:
 1. **Systems Thinking**: End-to-end search pipeline design
@@ -90,7 +90,7 @@ This project demonstrates:
 4. **Research Application**: Implementing and improving upon academic papers
 5. **Interview Preparation**: Concrete examples for senior engineering discussions
 
-## =, Research Areas
+## Research Areas
 
 Future exploration includes:
 - Learning-to-rank with gradient boosting
@@ -99,7 +99,7 @@ Future exploration includes:
 - Real-time index updates and consistency
 - Query understanding and intent classification
 
-## =� License
+## License
 
 MIT License - see LICENSE file for details
 
